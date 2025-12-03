@@ -1,6 +1,6 @@
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
-from src.tfidf_vectorizer import tfidf_vectorizer
+from src.vectorizer import tfidf_vectorizer
 
 
 class KeywordBaseline:

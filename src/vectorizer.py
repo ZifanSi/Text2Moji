@@ -14,3 +14,11 @@ tfidf_vectorizer = TfidfVectorizer(
     stop_words='english',
     ngram_range=(1, 2)
 )
+
+count_vectorizer = CountVectorizer(
+    max_features=5000,
+    min_df=2,
+    max_df=0.8,
+    stop_words='english',
+    ngram_range=(1, 2)
+)
