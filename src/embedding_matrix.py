@@ -4,8 +4,13 @@ import numpy as np
 from src.dataset import load_dataset
 from nltk.tokenize import TweetTokenizer
 import preprocessor as p
+import os
 
 tokenizer = TweetTokenizer()
+
+script_dir = os.path.dirname(__file__)
+
+embedding_dir = f"{script_dir}/../data/embeddings"
 
 def load_pretrained_embeddings(embedding_name):
     print(f"Loading {embedding_name}...")
@@ -28,7 +33,7 @@ def create_embedding_matrix_glove(vocab, pretrained_embeddings):
     pretrained_words = sum(1 for word in vocab if word in pretrained_embeddings)
     coverage = pretrained_words / len(vocab) * 100
     print(f"pretrained embeddings coverage rate: {coverage:.2f}% ({pretrained_words}/{len(vocab)})")
-    np.save(f"embedding_matrix_glove_twitter_{embedding_dim}.npy", embedding_matrix)
+    np.save(f"{embedding_dir}/embedding_matrix_glove_twitter_{embedding_dim}.npy", embedding_matrix)
 
     return embedding_matrix
 
@@ -47,7 +52,7 @@ def create_embedding_matrix_fasttext(vocab, pretrained_embeddings):
         else:
             embedding_matrix[idx] = pretrained_embeddings[word]
 
-    np.save("embedding_matrix_crawl_subword_300.npy", embedding_matrix)
+    np.save(f"{embedding_dir}/embedding_matrix_crawl_subword_300.npy", embedding_matrix)
     return embedding_matrix
 
 def create_vocab():
@@ -68,18 +73,6 @@ def create_vocab():
 
     print(f"Vocabulary size: {len(vocab)}")
 
-    np.save("vocab.npy", vocab, allow_pickle=True)
+    np.save(f"{embedding_dir}/vocab.npy", vocab, allow_pickle=True)
 
     return vocab
-
-if __name__ == "__main__":
-    vocab = create_vocab()
-
-    # glove_embeddings = load_pretrained_embeddings("glove-twitter-100")
-    # create_embedding_matrix_glove(vocab, glove_embeddings)
-
-    glove_embeddings_200d = load_pretrained_embeddings("glove-twitter-200")
-    create_embedding_matrix_glove(vocab, glove_embeddings_200d)
-
-    # fasttext_embeddings = load_fasttext()
-    # create_embedding_matrix_fasttext(vocab, fasttext_embeddings)
