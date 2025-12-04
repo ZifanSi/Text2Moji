@@ -1,12 +1,8 @@
-import numpy as np
-from src.vectorizer import tfidf_vectorizer, count_vectorizer
+from src.vectorizer import count_vectorizer
 from sklearn.naive_bayes import MultinomialNB
 
 class NBBaseline:
     def __init__(self, X_train, y_train):
-        self.class_priors = {} # P(c)
-        self.word_likelihoods = {} # P(w|c)
-        self.vocab_size = 0
         self.vectorizer = count_vectorizer
         self.X_train = self.vectorizer.fit_transform(X_train)
         self.y_train = y_train

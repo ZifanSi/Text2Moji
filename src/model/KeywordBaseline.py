@@ -1,6 +1,7 @@
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from src.vectorizer import tfidf_vectorizer
+from nltk.tokenize import TweetTokenizer
 
 
 class KeywordBaseline:
@@ -31,7 +32,7 @@ class KeywordBaseline:
     def predict_weights(self, text):
         feature_names = self.vectorizer.get_feature_names_out()
         word_to_index = {w: i for i, w in enumerate(feature_names)}
-        tokens = text.lower().split()
+        tokens = TweetTokenizer().tokenize(text.lower())
 
         scores = {}
         for label, weights in self.label_word_weights.items():

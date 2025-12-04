@@ -1,4 +1,6 @@
 __pycache__
+data/embeddings/*
+notebooks/models/*
 
 # Virtual env
 .venv/
