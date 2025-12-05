@@ -39,7 +39,7 @@ def create_embedding_matrix_glove(vocab, pretrained_embeddings):
 
 def load_fasttext():
     print("Loading fastText...")
-    ft = load_facebook_vectors("data/embeddings/crawl-300d-2M-subword.bin")
+    ft = load_facebook_vectors(f"{embedding_dir}/crawl-300d-2M-subword.bin")
     return ft
 
 def create_embedding_matrix_fasttext(vocab, pretrained_embeddings):
