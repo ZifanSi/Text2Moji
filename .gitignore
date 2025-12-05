@@ -1,6 +1,5 @@
 __pycache__
-data/embeddings/*
-notebooks/models/*
+data/embeddings/crawl-300d-2M-subword.bin
 
 # Virtual env
 .venv/
